@@ -1,5 +1,7 @@
 # Welcome to Remix!
 
+## The above application lacks few functionality issues like, Edit and Addition of Campaign Addionally it lacks the Addition of new Keyword within the campaign
+
 - 📖 [Remix docs](https://remix.run/docs)
 
 ## Development

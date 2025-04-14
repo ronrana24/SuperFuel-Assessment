@@ -3,6 +3,7 @@ import { dummyCampaigns, keywordsList } from "../sampleData";
 import { redirect, useLoaderData, useNavigate } from "@remix-run/react";
 import { Campaign } from "../types";
 import { useState } from "react";
+import AddKeyModal from "~/components/AddKeyword";
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const campaignId = params.campaignId;
@@ -24,6 +25,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
 export default function CampaignDetails() {
   const campaign = useLoaderData<typeof loader>();
+  const [openModel, setOpenModel] = useState(false);
   const navigate = useNavigate();
 
   const [kwords, setKeywords] = useState(keywordsList);
@@ -34,6 +36,10 @@ export default function CampaignDetails() {
       delete updated[key];
       return updated;
     });
+  }
+
+  function handleClick() {
+    setOpenModel(true);
   }
 
   return (
@@ -127,7 +133,10 @@ export default function CampaignDetails() {
 
             <div className="border-t border-gray-100 pt-6">
               <div className="flex flex-wrap gap-4">
-                <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                <button
+                  onClick={() => handleClick()}
+                  className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                >
                   Add Keyword
                 </button>
               </div>
@@ -135,6 +144,13 @@ export default function CampaignDetails() {
           </div>
         </div>
       </div>
+      <AddKeyModal
+        isOpen={openModel}
+        onClose={() => {
+          setOpenModel(false);
+        }}
+        campaign={campaign}
+      />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { Form } from "@remix-run/react";
-import { Campaign } from "../types";
-import { keywordsList } from "../sampleData";
+import { Campaign } from "../models/types";
+import { dummyKeywordList } from "../models/sampleData";
 
 interface Props {
   isOpen: boolean;
@@ -48,7 +48,7 @@ export default function AddKeyModal({ isOpen, onClose, campaign }: Props) {
                 // Handle the selected options array
               }}
             >
-              {Object.entries(keywordsList).map(([key, value]) => (
+              {Object.entries(dummyKeywordList).map(([key, value]) => (
                 <option key={key} value={key}>
                   {value.text}
                 </option>

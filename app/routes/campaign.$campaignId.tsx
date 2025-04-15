@@ -1,7 +1,7 @@
 import { LoaderFunctionArgs } from "@remix-run/node";
-import { dummyCampaigns, keywordsList } from "../sampleData";
+import { dummyCampaigns, dummyKeywordList } from "../models/sampleData";
 import { redirect, useLoaderData, useNavigate } from "@remix-run/react";
-import { Campaign } from "../types";
+import { Campaign } from "../models/types";
 import { useState } from "react";
 import AddKeyModal from "~/components/AddKeyword";
 
@@ -28,7 +28,7 @@ export default function CampaignDetails() {
   const [openModel, setOpenModel] = useState(false);
   const navigate = useNavigate();
 
-  const [kwords, setKeywords] = useState(keywordsList);
+  const [kwords, setKeywords] = useState(dummyKeywordList);
 
   function handleDeleteKeyword(key: string) {
     setKeywords((previousKeywords) => {

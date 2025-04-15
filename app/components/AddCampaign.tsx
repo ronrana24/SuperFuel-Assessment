@@ -1,6 +1,6 @@
 import { Form, redirect } from "@remix-run/react";
-import { Campaign } from "../types";
-import { dummyCampaigns, keywordsList } from "../sampleData";
+import { Campaign } from "../models/types";
+import { dummyCampaigns, dummyKeywordList } from "../models/sampleData";
 import { ActionFunctionArgs } from "@remix-run/node";
 
 interface Props {
@@ -106,10 +106,10 @@ export default function AddCampaignModal({ isOpen, onClose, campaign }: Props) {
               {campaign?.keywords
                 ? campaign.keywords.map((id) => (
                     <option key={id} value={id}>
-                      {keywordsList[id]?.text || "Unknown Keyword"}
+                      {dummyKeywordList[id]?.text || "Unknown Keyword"}
                     </option>
                   ))
-                : Object.entries(keywordsList).map(([key, value]) => (
+                : Object.entries(dummyKeywordList).map(([key, value]) => (
                     <option key={key} value={value.text}>
                       {value.text}
                     </option>
